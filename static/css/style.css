@@ -1,0 +1,343 @@
+.symptom-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    margin: 0.25rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+.symptom-badge.related {
+    background-color: rgba(224, 242, 254, 0.5);
+    color: rgb(2, 132, 199);
+    border: 1px solid rgba(186, 230, 253, 0.3);
+}
+.dark .symptom-badge.related {
+    background-color: rgba(7, 89, 133, 0.3);
+    color: rgb(125, 211, 252);
+    border-color: rgba(14, 165, 233, 0.3);
+}
+.symptom-badge.extracted {
+    background-color: rgba(220, 252, 231, 0.5);
+    color: rgb(5, 150, 105);
+    border: 1px solid rgba(187, 247, 208, 0.3);
+}
+.dark .symptom-badge.extracted {
+    background-color: rgba(6, 95, 70, 0.3);
+    color: rgb(74, 222, 128);
+    border-color: rgba(52, 211, 153, 0.3);
+}
+.symptom-badge.selected {
+    background-color: rgba(254, 243, 199, 0.5);
+    color: rgb(180, 83, 9);
+    border: 1px solid rgba(253, 230, 138, 0.3);
+}
+.dark .symptom-badge.selected {
+    background-color: rgba(120, 53, 15, 0.3);
+    color: rgb(251, 191, 36);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+.symptom-badge.direct-match {
+    border-left: 3px solid rgb(16, 185, 129);
+}
+.symptom-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.dark .symptom-badge:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+.disease-item {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-radius: 0.75rem;
+    background-color: rgba(248, 250, 252, 0.7);
+    border: 1px solid rgba(226, 232, 240, 0.5);
+    transition: all 0.2s;
+}
+.dark .disease-item {
+    background-color: rgba(15, 23, 42, 0.5);
+    border-color: rgba(30, 41, 59, 0.5);
+}
+.disease-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.dark .disease-item:hover {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.disease-name {
+    font-weight: 600;
+    margin-right: 1rem;
+    color: rgb(15, 23, 42);
+}
+.dark .disease-name {
+    color: rgb(248, 250, 252);
+}
+.disease-score {
+    font-family: monospace;
+    margin-right: 0.75rem;
+    color: rgb(100, 116, 139);
+}
+.dark .disease-score {
+    color: rgb(148, 163, 184);
+}
+.confidence-bar {
+    width: 100px;
+    height: 6px;
+    background-color: rgba(226, 232, 240, 0.5);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.dark .confidence-bar {
+    background-color: rgba(30, 41, 59, 0.5);
+}
+.confidence-bar-fill {
+    height: 100%;
+    background-color: rgb(14, 165, 233);
+    transition: width 0.3s ease;
+}
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+.tab-content.active {
+    display: block;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.nav-tab {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.dark .nav-tab {
+    background-color: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+.nav-tab-item {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem 0;
+    color: rgb(100, 116, 139);
+    transition: all 0.2s;
+    position: relative;
+}
+.dark .nav-tab-item {
+    color: rgb(148, 163, 184);
+}
+.nav-tab-item.active {
+    color: rgb(14, 165, 233);
+}
+.dark .nav-tab-item.active {
+    color: rgb(56, 189, 248);
+}
+.nav-tab-item i {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 1.25rem;
+}
+.nav-tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background-color: rgb(14, 165, 233);
+    border-radius: 3px;
+}
+.dark .nav-tab-item.active::after {
+    background-color: rgb(56, 189, 248);
+}
+.content-container {
+    padding-bottom: 80px;
+}
+.settings-panel {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    transition: right 0.3s;
+    z-index: 101;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.dark .settings-panel {
+    background-color: rgba(15, 23, 42, 0.9);
+    box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+}
+.settings-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 100;
+    display: none;
+    backdrop-filter: blur(2px);
+}
+.card {
+    background-color: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.2s;
+}
+.dark .card {
+    background-color: rgba(15, 23, 42, 0.7);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.btn-primary {
+    background-color: rgb(14, 165, 233);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: rgb(2, 132, 199);
+}
+.btn-secondary {
+    background-color: rgba(241, 245, 249, 0.7);
+    color: rgb(15, 23, 42);
+}
+.dark .btn-secondary {
+    background-color: rgba(30, 41, 59, 0.7);
+    color: rgb(248, 250, 252);
+}
+.btn-secondary:hover {
+    background-color: rgba(226, 232, 240, 0.9);
+}
+.dark .btn-secondary:hover {
+    background-color: rgba(51, 65, 85, 0.9);
+}
+.btn-danger {
+    background-color: rgba(254, 226, 226, 0.7);
+    color: rgb(220, 38, 38);
+}
+.dark .btn-danger {
+    background-color: rgba(127, 29, 29, 0.3);
+    color: rgb(248, 113, 113);
+}
+.btn-danger:hover {
+    background-color: rgba(254, 226, 226, 0.9);
+}
+.dark .btn-danger:hover {
+    background-color: rgba(127, 29, 29, 0.5);
+}
+.theme-toggle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: rgba(241, 245, 249, 0.7);
+    color: rgb(15, 23, 42);
+}
+.dark .theme-toggle {
+    background-color: rgba(30, 41, 59, 0.7);
+    color: rgb(248, 250, 252);
+}
+.theme-toggle:hover {
+    background-color: rgba(226, 232, 240, 0.9);
+}
+.dark .theme-toggle:hover {
+    background-color: rgba(51, 65, 85, 0.9);
+}
+.header {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.dark .header {
+    background-color: rgba(15, 23, 42, 0.8);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.select {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    background-color: rgba(241, 245, 249, 0.7);
+    color: rgb(15, 23, 42);
+    font-size: 0.875rem;
+    transition: all 0.2s;
+}
+.dark .select {
+    border-color: rgba(30, 41, 59, 0.7);
+    background-color: rgba(30, 41, 59, 0.7);
+    color: rgb(248, 250, 252);
+}
+.select:focus {
+    outline: none;
+    border-color: rgb(14, 165, 233);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+.textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(226, 232, 240, 0.7);
+    background-color: rgba(241, 245, 249, 0.7);
+    color: rgb(15, 23, 42);
+    font-size: 0.875rem;
+    transition: all 0.2s;
+    min-height: 120px;
+}
+.dark .textarea {
+    border-color: rgba(30, 41, 59, 0.7);
+    background-color: rgba(30, 41, 59, 0.7);
+    color: rgb(248, 250, 252);
+}
+.textarea:focus {
+    outline: none;
+    border-color: rgb(14, 165, 233);
+    box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+}
+.label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: rgb(15, 23, 42);
+}
+.dark .label {
+    color: rgb(248, 250, 252);
+}
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: rgb(100, 116, 139);
+}
+.dark .empty-state {
+    color: rgb(148, 163, 184);
+}

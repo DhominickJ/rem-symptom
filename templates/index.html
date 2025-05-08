@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4>Symptom Analyzer</h4>
+            </div>
+            <div class="card-body">
+                <p class="lead">This tool helps you analyze symptoms and find related ones. You can either:</p>
+                <ol>
+                    <li>Select a symptom from the dropdown to see related symptoms</li>
+                    <li>Describe how you feel, and we'll extract possible symptoms</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Symptom Selection Section -->
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Find Related Symptoms</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="symptomSelect" class="form-label">Select a symptom:</label>
+                    <select class="form-select" id="symptomSelect">
+                        <option value="">-- Select a symptom --</option>
+                        {% for symptom in symptoms %}
+                        <option value="{{ symptom }}">{{ symptom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button id="findRelatedBtn" class="btn btn-primary">Find Related Symptoms</button>
+                
+                <div class="mt-4">
+                    <h6>Related Symptoms:</h6>
+                    <div id="relatedSymptomsContainer" class="d-none">
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h6>Co-occurrence Related</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="cooccurrenceSymptoms" class="related-symptoms"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h6>Semantically Related</h6>
+                            </div>
+                            <div class="card-body">
+                                <div id="semanticSymptoms" class="related-symptoms"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="noRelatedFound" class="alert alert-info d-none">
+                        No related symptoms found.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Text Analysis Section -->
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Describe Your Symptoms</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="symptomsText" class="form-label">Describe how you feel:</label>
+                    <textarea class="form-control" id="symptomsText" rows="4" placeholder="E.g., I've been having headaches and feeling dizzy for the past few days. My throat also feels sore when I swallow."></textarea>
+                </div>
+                <button id="analyzeTextBtn" class="btn btn-primary">Analyze</button>
+                
+                <div class="mt-4">
+                    <h6>Extracted Symptoms:</h6>
+                    <div id="extractedSymptomsContainer" class="d-none">
+                        <div id="extractedSymptoms" class="extracted-symptoms"></div>
+                        
+                        <h6 class="mt-4">Possible Associated Conditions:</h6>
+                        <div id="possibleDiseases" class="possible-diseases"></div>
+                    </div>
+                    <div id="noSymptomsFound" class="alert alert-info d-none">
+                        No symptoms detected in your description.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Selected Symptoms Section -->
+<div class="row mt-3">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5>Your Selected Symptoms</h5>
+            </div>
+            <div class="card-body">
+                <div id="selectedSymptomsContainer">
+                    <p id="noSelectedSymptoms">No symptoms selected yet. Click on a symptom to add it to your list.</p>
+                    <div id="selectedSymptoms" class="selected-symptoms"></div>
+                </div>
+                
+                <div class="mt-3 d-none" id="selectedSymptomsActions">
+                    <button id="clearSelectedBtn" class="btn btn-outline-danger">Clear All</button>
+                    <button id="analyzeSelectedBtn" class="btn btn-success">Analyze Selected Symptoms</button>
+                </div>
+                
+                <div class="mt-4 d-none" id="selectedAnalysisResults">
+                    <h6>Analysis Results:</h6>
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>Possible Conditions Based on Selected Symptoms</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="selectedPossibleDiseases" class="possible-diseases"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
