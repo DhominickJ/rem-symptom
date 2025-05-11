@@ -100,5 +100,5 @@ def analyze_text():
         'possible_diseases': possible_diseases
     })
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#     app.run(debug=True)
